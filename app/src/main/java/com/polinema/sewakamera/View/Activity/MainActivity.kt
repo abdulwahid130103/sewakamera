@@ -1,7 +1,8 @@
-package com.polinema.sewakamera
+package com.polinema.sewakamera.View.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.polinema.sewakamera.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
