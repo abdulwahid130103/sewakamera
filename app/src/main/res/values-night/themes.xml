@@ -2,6 +2,23 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Sewakamera" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/background</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/primary</item>
+        <item name="colorSecondaryVariant">@color/sale</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
+    </style>
+    <style name="Theme.Sewakamera" parent="Base.Theme.Sewakamera" />
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/background_dark</item>
     </style>
 </resources>

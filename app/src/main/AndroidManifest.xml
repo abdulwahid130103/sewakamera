@@ -12,9 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sewakamera"
         tools:targetApi="31">
-        <activity
-            android:name=".View.Auth.RegisterActivity"
-            android:exported="false" />
+        <activity android:name=".View.Auth.RegisterActivity" android:exported="false"/>
         <activity
             android:name=".View.Activity.MainActivity"
             android:exported="false" />
