@@ -6,15 +6,15 @@
         android:icon="@drawable/ic_home"/>
     <item
         android:id="@+id/shopMenu"
-        android:title="Shop"
-        android:icon="@drawable/ic_shopping_cart"/>
-    <item
-        android:id="@+id/bagMenu"
-        android:title="Bag"
+        android:title="Produk"
         android:icon="@drawable/ic_bag"/>
     <item
-        android:id="@+id/favMenu"
-        android:title="Favorites"
+        android:id="@+id/keranjangMenu"
+        android:title="Keranjang"
+        android:icon="@drawable/ic_shopping_cart"/>
+    <item
+        android:id="@+id/mitraMenu"
+        android:title="Mitra"
         android:icon="@drawable/ic_fav"/>
     <item
         android:id="@+id/profileMenu"

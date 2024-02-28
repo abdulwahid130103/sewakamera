@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.polinema.sewakamera.Helper.LoadingDialog
 import com.polinema.sewakamera.R
+import com.polinema.sewakamera.View.Activity.HomeActivity
 import com.polinema.sewakamera.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -38,8 +39,9 @@ class LoginActivity : AppCompatActivity() {
         }
 
         b.loginBtn.setOnClickListener {
-            checkInput()
-
+//            checkInput()
+            intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
 
         }
     }

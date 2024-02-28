@@ -22,162 +22,369 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="50dp"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/main_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
-        <EditText
-            android:id="@+id/nameEt_signUpPage"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:textSize="15sp"
-            android:paddingLeft="20dp"
-            android:drawableRight="@null"
-            android:paddingRight="20dp"
-            android:textColor="@color/mainText"
-            android:background="@drawable/edit_text_bg"
-            android:fontFamily="@font/metropolis_regular"
-            android:hint="Full Name"
-            android:inputType="textPersonName"
-            android:maxLines="1" />
-
-        <TextView
-            android:id="@+id/fullnameError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Email Error"
-            android:visibility="gone"
-            android:fontFamily="@font/metropolis_regular"
-            android:textColor="@color/error"
-            android:textSize="9sp"
-            android:layout_marginTop="5dp"
-            />
-
-        <EditText
-            android:layout_marginTop="10dp"
-            android:id="@+id/emailEt_signUpPage"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:textSize="15sp"
-            android:paddingLeft="20dp"
-            android:drawableRight="@null"
-            android:paddingRight="20dp"
-            android:textColor="@color/mainText"
-            android:background="@drawable/edit_text_bg"
-            android:fontFamily="@font/metropolis_regular"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:maxLines="1" />
-
-        <TextView
-            android:id="@+id/emailError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Email Error"
-            android:visibility="gone"
-            android:fontFamily="@font/metropolis_regular"
-            android:textColor="@color/error"
-            android:textSize="9sp"
-            android:layout_marginTop="5dp"
-            />
-
-        <EditText
-            android:layout_marginTop="10dp"
-            android:id="@+id/PassEt_signUpPage"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:textSize="15sp"
-            android:textColor="@color/mainText"
-            android:drawableRight="@null"
-            android:paddingRight="20dp"
-            android:paddingLeft="20dp"
-            android:background="@drawable/edit_text_bg"
-            android:fontFamily="@font/metropolis_regular"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:maxLines="1" />
-
-        <TextView
-            android:id="@+id/passError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Email Error"
-            android:visibility="gone"
-            android:fontFamily="@font/metropolis_regular"
-            android:textColor="@color/error"
-            android:textSize="9sp"
-            android:layout_marginTop="5dp"
-            />
-
-        <EditText
-            android:layout_marginTop="10dp"
-            android:id="@+id/cPassEt_signUpPage"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:textSize="15sp"
-            android:textColor="@color/mainText"
-            android:drawableRight="@null"
-            android:paddingRight="20dp"
-            android:paddingLeft="20dp"
-            android:background="@drawable/edit_text_bg"
-            android:fontFamily="@font/metropolis_regular"
-            android:hint="Confirm Password"
-            android:inputType="textPassword"
-            android:maxLines="1" />
-
-        <TextView
-            android:id="@+id/cpassError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Email Error"
-            android:visibility="gone"
-            android:fontFamily="@font/metropolis_regular"
-            android:textColor="@color/error"
-            android:textSize="9sp"
-            android:layout_marginTop="5dp"
-            />
-
-        <Button
-            android:id="@+id/signUpBtn_signUpPage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_bg"
-            android:text="Sign Up"
-            android:layout_marginTop="40dp"
-            android:elevation="10dp"
-            />
-
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/signUpBtn_signUpPage"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:layout_editor_absoluteX="8dp">
 
         <LinearLayout
-            android:layout_marginTop="30dp"
-            android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:orientation="vertical">
 
-            >
-            <TextView
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:background="@drawable/edit_text_bg"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/insNama"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/mainText"
+                    android:background="@drawable/edit_text_bg"
+                    android:textSize="15sp"
+                    android:hint="Nama Lengkap"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:background="@drawable/edit_text_bg"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/insEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/mainText"
+                    android:background="@drawable/edit_text_bg"
+                    android:textSize="15sp"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"  />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:background="@drawable/edit_text_bg"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/insNik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/mainText"
+                    android:background="@drawable/edit_text_bg"
+                    android:textSize="15sp"
+                    android:hint="NIK (Nomor Induk Keluarga)"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/metropolis_regular"
-                android:text="Have an Account? "
-                android:textColor="@color/mainText"
-                android:textSize="14sp"
-                />
-            <TextView
-                android:id="@+id/signInTv_signUpPage"
-                android:layout_width="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardBackgroundColor="#00FFFFFF"
+                app:cardElevation="0dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_bg"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/insTempat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/mainText"
+                        android:background="@drawable/edit_text_bg"
+                        android:textSize="15sp"
+                        android:hint="Tempat Lahir"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="136dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_bg"
+                    android:layout_gravity="end"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/insTgl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/mainText"
+                        android:background="@drawable/edit_text_bg"
+                        android:textSize="15sp"
+                        android:hint="Tanggal Lahir"  />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:background="@drawable/edit_text_bg"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/insNoHpAkun"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/mainText"
+                    android:background="@drawable/edit_text_bg"
+                    android:textSize="15sp"
+                    android:hint="Nomor Handphone"
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:background="@drawable/edit_text_bg"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/insAlamt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/mainText"
+                    android:background="@drawable/edit_text_bg"
+                    android:textSize="15sp"
+                    android:hint="Alamat"
+                    android:gravity="top"
+                    android:inputType="textMultiLine"
+                    android:lines="2"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/metropolis_regular"
-                android:text=" Sign in"
-                android:textColor="@color/primary"
-                android:textSize="14sp"
-                />
+                app:cardBackgroundColor="@color/white"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Foto Profil"
+                    android:fontFamily="@font/metropolis_bold"
+                    android:textColor="@color/mainText"
+                    android:textSize="18sp"/>
+
+                <ImageView
+                    android:id="@+id/imgFotoProfil"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp"
+                    android:layout_marginTop="24dp"
+                    android:src="@drawable/image"
+                    android:background="@color/black"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <Button
+                    android:id="@+id/btnFile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="160dp"
+                    android:layout_marginTop="48dp"
+                    android:text="CHOOSE FILE"
+                    android:textSize="12sp"
+                    android:layout_gravity="start"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </androidx.cardview.widget.CardView>
+
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/white"
+                app:cardElevation="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Foto Kartu Tanda Penduduk (KTP)"
+                    android:fontFamily="@font/metropolis_bold"
+                    android:textColor="@color/mainText"
+                    android:textSize="18sp"/>
+
+                <ImageView
+                    android:id="@+id/imgFotoKtp"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp"
+                    android:layout_marginTop="24dp"
+                    android:src="@drawable/image"
+                    android:background="@color/black"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <Button
+                    android:id="@+id/btnFileKtp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="160dp"
+                    android:layout_marginTop="48dp"
+                    android:text="CHOOSE FILE"
+                    android:textSize="12sp"
+                    android:layout_gravity="start"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </androidx.cardview.widget.CardView>
+
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="24dp" />
+
+            <View
+                android:id="@+id/dividerNih"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/primary" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="24dp" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:background="@drawable/edit_text_bg"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/insPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/mainText"
+                    android:background="@drawable/edit_text_bg"
+                    android:textSize="15sp"
+                    android:hint="Password"
+                    android:inputType="textPassword"  />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:background="@drawable/edit_text_bg"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/insPasswordConfirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/mainText"
+                    android:background="@drawable/edit_text_bg"
+                    android:textSize="15sp"
+                    android:hint="Confirm Password"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineHeight="18dp"
+                android:textColor="#F63232"
+                android:text="*Tolong masukkan password dengan benar!"
+                android:textStyle="italic"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="12dp"/>
+
         </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
+    <Button
+        android:id="@+id/signUpBtn_signUpPage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginHorizontal="24dp"
+        android:background="@drawable/btn_bg"
+        android:elevation="10dp"
+        android:text="Sign Up"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/metropolis_regular"
+            android:text="Have an Account? "
+            android:textColor="@color/mainText"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/signInTv_signUpPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/metropolis_regular"
+            android:text=" Sign in"
+            android:textColor="@color/primary"
+            android:textSize="14sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

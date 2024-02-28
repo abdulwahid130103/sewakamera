@@ -2,6 +2,7 @@ package com.polinema.sewakamera.Helper
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.widget.Toast
 import com.polinema.sewakamera.R
 
 class LoadingDialog(private val activity: Activity){
@@ -14,7 +15,9 @@ class LoadingDialog(private val activity: Activity){
         builder.setCancelable(false)
         dialog = builder.create()
         dialog?.show()
+        
     }
+
 
     fun dismissDialog() {
         dialog!!.dismiss()
