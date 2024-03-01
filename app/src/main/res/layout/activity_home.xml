@@ -8,7 +8,6 @@
     tools:context=".View.Activity.HomeActivity">
 
 
-
     <FrameLayout
         android:background="@color/white"
         android:id="@+id/nav_fragment"

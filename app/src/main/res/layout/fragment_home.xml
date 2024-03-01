@@ -5,7 +5,8 @@
     android:id="@+id/MainScrollView_homeFrag"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/background"
+    tools:context=".View.Fragment.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/MainLayout_homeFrag"
@@ -19,7 +20,7 @@
             android:layout_height="480dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+            app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/cover_single">
 
 
@@ -187,20 +188,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:lottie_rawRes="@raw/circle_progress" />
 
-
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:minHeight="60dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-
-        </RelativeLayout>
+<!--        <ImageView-->
+<!--            android:id="@+id/visualSearchBtn_homePage"-->
+<!--            android:layout_width="35dp"-->
+<!--            android:layout_height="35dp"-->
+<!--            android:layout_marginTop="35dp"-->
+<!--            android:layout_marginRight="20dp"-->
+<!--            android:src="@drawable/ic_visual_search"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
