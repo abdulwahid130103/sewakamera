@@ -32,11 +32,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(view)
 
 
+
         loadingDialog = LoadingDialog(this)
         Session = SessionSewa(this)
+        Session.removeData()
+        checkLogin()
         b.btnLogin.setOnClickListener(this)
         b.btnRegister.setOnClickListener(this)
-        checkLogin()
+
     }
 
     override fun onClick(p0: View?) {

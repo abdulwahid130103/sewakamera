@@ -21,4 +21,5 @@
     <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@android:color/background_dark</item>
     </style>
+
 </resources>

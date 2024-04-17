@@ -9,16 +9,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.polinema.sewakamera.Adapter.CoverProdukAdapter
 import com.polinema.sewakamera.Adapter.ProdukTerbaruAdapter
+import com.polinema.sewakamera.Adapter.ProdukTerlarisAdapter
 import com.polinema.sewakamera.Model.Connection
 import com.polinema.sewakamera.Model.Produk
 import com.polinema.sewakamera.R
@@ -36,10 +39,12 @@ class HomeFragment : Fragment() {
     private lateinit var v : View
 
     private lateinit var coverProduk:ArrayList<Produk>
-    lateinit var terbaruProduk:ArrayList<Produk>
+    private lateinit var terbaruProduk:ArrayList<Produk>
+    private lateinit var terlarisProduk:ArrayList<Produk>
 
-    lateinit var coverProdukAdapter: CoverProdukAdapter
-    lateinit var terbaruProdukAdapter: ProdukTerbaruAdapter
+    private lateinit var coverProdukAdapter: CoverProdukAdapter
+    private lateinit var terbaruProdukAdapter: ProdukTerbaruAdapter
+    private lateinit var produkTerlarisAdapter: ProdukTerlarisAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,10 +56,13 @@ class HomeFragment : Fragment() {
 
         coverProduk = arrayListOf()
         terbaruProduk = arrayListOf()
+        terlarisProduk = arrayListOf()
+
         hideLayout()
 
         getCoverProduk()
         getProdukTerbaru()
+        getProdukTerlaris()
 
         b.coverRecView.layoutManager = LinearLayoutManager(context,
             LinearLayoutManager.HORIZONTAL, false)
@@ -66,6 +74,14 @@ class HomeFragment : Fragment() {
         b.newRecView.setHasFixedSize(true)
         terbaruProdukAdapter = ProdukTerbaruAdapter(terbaruProduk, activity as Context )
         b.newRecView.adapter = terbaruProdukAdapter
+
+
+        b.saleRecView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
+        b.saleRecView.setHasFixedSize(true)
+        produkTerlarisAdapter = ProdukTerlarisAdapter(terlarisProduk, activity as Context )
+        b.saleRecView.adapter = produkTerlarisAdapter
+
+
 
         showLayout()
 
@@ -134,7 +150,7 @@ class HomeFragment : Fragment() {
         val url = Connection()
 
         val stringRequest = object : StringRequest(
-            Method.GET, url.url_cover_produk,
+            Method.GET, url.url_cover_produk_terbaru,
             Response.Listener { response ->
                 try {
                     val jsonArray = JSONArray(response)
@@ -155,6 +171,46 @@ class HomeFragment : Fragment() {
                         terbaruProduk.add(produk)
                     }
                     terbaruProdukAdapter.notifyDataSetChanged()
+                } catch (e: JSONException) {
+                    Toast.makeText(thisParent, getString(R.string.error_message_data), Toast.LENGTH_SHORT).show()
+                    e.printStackTrace()
+                }
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(
+                    thisParent, getString(R.string.error_message_server), Toast.LENGTH_LONG
+                ).show()
+            }) {}
+
+        val queue = Volley.newRequestQueue(thisParent)
+        queue.add(stringRequest)
+    }
+
+    private fun getProdukTerlaris() {
+        val url = Connection()
+
+        val stringRequest = object : StringRequest(
+            Method.GET, url.url_cover_produk_terlaris,
+            Response.Listener { response ->
+                try {
+                    val jsonArray = JSONArray(response)
+                    terlarisProduk.clear()
+                    for (i in 0 until jsonArray.length()) {
+                        val jsonObject = jsonArray.getJSONObject(i)
+                        val produk = Produk(
+                            id = jsonObject.getInt("id"),
+                            id_mitra = jsonObject.getInt("id_mitra"),
+                            id_category = jsonObject.getString("id_category"),
+                            nama_produk = jsonObject.getString("nama_produk"),
+                            image = jsonObject.getString("gambar_url"),
+                            type = jsonObject.getString("type"),
+                            harga = jsonObject.getInt("harga"),
+                            stok = jsonObject.getInt("stok"),
+                            deskripsi = jsonObject.getString("deskripsi")
+                        )
+                        terlarisProduk.add(produk)
+                    }
+                    produkTerlarisAdapter.notifyDataSetChanged()
                 } catch (e: JSONException) {
                     Toast.makeText(thisParent, getString(R.string.error_message_data), Toast.LENGTH_SHORT).show()
                     e.printStackTrace()

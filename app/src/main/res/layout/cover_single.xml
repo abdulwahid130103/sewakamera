@@ -40,6 +40,20 @@
             android:textColor="@color/white"
             android:textSize="40dp">
         </TextView>
+
+        <TextView
+            android:id="@+id/productIdCover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/metropolis_semibold"
+            android:maxLines="2"
+            android:visibility="gone"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="40dp">
+        </TextView>
         <Button
             android:id="@+id/productCheck_coverPage"
             android:layout_width="150dp"

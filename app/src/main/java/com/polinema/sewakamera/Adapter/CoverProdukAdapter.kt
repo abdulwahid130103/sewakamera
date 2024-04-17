@@ -31,6 +31,7 @@ class CoverProdukAdapter (var ctx: Context, private val coverProdukList: ArrayLi
         val coverPro: Produk = coverProdukList[position]
 
         holder.productNoteCover.text = coverPro.nama_produk
+        holder.productIdCover.text = coverPro.id.toString()
         Glide.with(ctx)
             .load(coverPro.image)
             .into(holder.productImage_coverPage)
@@ -38,7 +39,7 @@ class CoverProdukAdapter (var ctx: Context, private val coverProdukList: ArrayLi
 
         holder.productCheck_coverPage.setOnClickListener {
 
-            goDetailsPage(position)
+            goDetailsPage(coverPro.id)
 
 
         }
@@ -54,6 +55,7 @@ class CoverProdukAdapter (var ctx: Context, private val coverProdukList: ArrayLi
 
         val productImage_coverPage: ImageView = itemView.findViewById(R.id.productImage_coverPage)
         val productNoteCover: TextView = itemView.findViewById(R.id.productNoteCover)
+        val productIdCover: TextView = itemView.findViewById(R.id.productIdCover)
         val productCheck_coverPage: Button = itemView.findViewById(R.id.productCheck_coverPage)
 
 
@@ -62,7 +64,7 @@ class CoverProdukAdapter (var ctx: Context, private val coverProdukList: ArrayLi
     private fun goDetailsPage(position: Int) {
         val intent = Intent(ctx , DetailProdukActivity::class.java)
         intent.putExtra("ProductIndex", position)
-        intent.putExtra("ProductFrom", "Cover")
+        intent.putExtra("ProductFrom", "cover")
         ctx.startActivity(intent)
     }
 }

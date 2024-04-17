@@ -11,6 +11,7 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.polinema.sewakamera.Helper.DataHelper
 import com.polinema.sewakamera.Model.Produk
 import com.polinema.sewakamera.R
 import com.polinema.sewakamera.View.Activity.DetailProdukActivity
@@ -28,10 +29,12 @@ class ProdukTerbaruAdapter (private val produkList: ArrayList<Produk>, context: 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
+        val helper = DataHelper()
         val product: Produk = produkList[position]
-        holder.productBrandName_singleProduct.text = product.id_category.toString()
+        holder.productBrandName_singleProduct.text = product.id_category
+        holder.productIdSingle.text = product.id.toString()
         holder.productName_singleProduct.text = product.nama_produk
-        holder.productPrice_singleProduct.text = "Rp."+product.harga
+        holder.productPrice_singleProduct.text = helper.formatRupiah(product.harga)
 
         Glide.with(ctx)
             .load(product.image)
@@ -40,7 +43,7 @@ class ProdukTerbaruAdapter (private val produkList: ArrayList<Produk>, context: 
 
 
         holder.itemView.setOnClickListener {
-            goDetailsPage(position)
+            goDetailsPage(product.id)
         }
 
     }
@@ -52,12 +55,12 @@ class ProdukTerbaruAdapter (private val produkList: ArrayList<Produk>, context: 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
         val productImage_singleProduct: ImageView = itemView.findViewById(R.id.productImage_singleProduct)
-        val productAddToFav_singleProduct: ImageView = itemView.findViewById(R.id.productAddToFav_singleProduct)
         val productRating_singleProduct: RatingBar = itemView.findViewById(R.id.productRating_singleProduct)
         val productBrandName_singleProduct: TextView = itemView.findViewById(R.id.productBrandName_singleProduct)
         val discountTv_singleProduct: TextView = itemView.findViewById(R.id.discountTv_singleProduct)
         val productName_singleProduct: TextView = itemView.findViewById(R.id.productName_singleProduct)
         val productPrice_singleProduct: TextView = itemView.findViewById(R.id.productPrice_singleProduct)
+        val productIdSingle: TextView = itemView.findViewById(R.id.productIdSingle)
         val discount_singleProduct = itemView.findViewById<LinearLayout>(R.id.discount_singleProduct)
 
 
