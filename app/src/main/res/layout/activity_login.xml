@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/metropolis_regular"
-                android:text=" Sign up"
+                android:text=" Register"
                 android:textColor="@color/primary"
                 android:textSize="14sp"
                 />

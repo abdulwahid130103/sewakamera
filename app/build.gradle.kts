@@ -62,4 +62,8 @@ dependencies {
 
     implementation("com.github.bumptech.glide:glide:4.12.0")
     implementation("com.google.code.gson:gson:2.9.1")
+
+//payment gateway midtrans
+    implementation("com.midtrans:uikit:2.0.0-SANDBOX")
+    implementation ("com.midtrans:uikit:1.29.0")
 }

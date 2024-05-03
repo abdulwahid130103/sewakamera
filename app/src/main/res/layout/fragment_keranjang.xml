@@ -11,29 +11,6 @@
 
 
 
-
-    <!--    <LinearLayout-->
-    <!--        android:layout_marginTop="20dp"-->
-    <!--        android:id="@+id/linearLayout2"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="50dp"-->
-    <!--        android:gravity="right"-->
-    <!--        android:layout_marginRight="10dp"-->
-    <!--        android:layout_marginLeft="10dp"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        tools:ignore="RtlHardcoded">-->
-
-    <!--        <ImageView-->
-    <!--            android:layout_gravity="center"-->
-    <!--            android:id="@+id/searchIv_ProfileFrag"-->
-    <!--            android:layout_width="22dp"-->
-    <!--            android:layout_height="22dp"-->
-    <!--            android:src="@drawable/ic_search" />-->
-
-    <!--    </LinearLayout>-->
-
     <TextView
         android:layout_marginTop="30dp"
         android:id="@+id/MybagText"
@@ -41,9 +18,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:fontFamily="@font/metropolis_semibold"
-        android:text="My Bag"
-        android:textColor="@color/mainText"
+        android:fontFamily="@font/robotobold"
+        android:text="Keranjang"
+        android:textColor="@color/black"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,8 +65,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="@font/metropolis_regular"
-                android:text="Total amount:"
+                android:fontFamily="@font/robotomedium"
+                android:text="Total:"
                 android:textColor="@color/textAd"
                 android:textSize="16sp" />
 
@@ -98,9 +75,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="@font/metropolis_semibold"
+                android:fontFamily="@font/robotoregular"
                 android:gravity="right"
-                android:text="$120"
+                android:text="0"
                 android:textColor="@color/mainText"
                 android:textSize="18sp" />
 
@@ -113,9 +90,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
+            android:fontFamily="@font/robotobold"
             android:layout_marginBottom="20dp"
             android:background="@drawable/btn_bg"
-            android:text="CHECK OUT" />
+            android:text="Booking" />
 
     </LinearLayout>
 

@@ -90,6 +90,7 @@ class HomeFragment : Fragment() {
         return v
     }
 
+
     private fun hideLayout(){
         b.animationView.playAnimation()
         b.animationView.loop(true)

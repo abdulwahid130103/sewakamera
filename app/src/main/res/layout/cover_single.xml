@@ -34,11 +34,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:fontFamily="@font/metropolis_semibold"
+            android:fontFamily="@font/robotobold"
             android:maxLines="2"
             android:text="Penyewaan Kamera"
             android:textColor="@color/white"
-            android:textSize="40dp">
+            android:textSize="35sp">
         </TextView>
 
         <TextView
@@ -59,6 +59,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Check"
+            android:fontFamily="@font/robotobold"
             android:background="@drawable/btn_bg"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"/>

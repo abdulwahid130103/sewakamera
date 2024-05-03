@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -18,13 +19,28 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sewakamera"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".View.Activity.AfterPaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.Activity.DetailHistoryTransaksiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.Activity.PembayaranActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.Activity.PesananActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.Activity.DeatilTransaksiActivity"
+            android:exported="false" />
         <activity
             android:name=".View.Activity.DetailMitraActivity"
             android:exported="false" />
@@ -39,10 +55,9 @@
             android:exported="false" />
         <activity
             android:name=".View.Auth.RegisterActivity"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".View.Activity.HomeActivity"-->
-<!--            android:exported="false" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".View.Activity.HomeActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".View.Auth.LoginActivity"
             android:exported="false" />

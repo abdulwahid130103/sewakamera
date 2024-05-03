@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/produkContainerBooking"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mitracontainerBooking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/idTransaksiBooking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/robotobold"
+            android:layout_marginStart="24dp"
+            android:visibility="gone"
+            android:textColor="@color/mainText"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/namaMitraBooking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/robotobold"
+            android:layout_marginStart="24dp"
+            android:text="Mitra 1"
+            android:textColor="@color/mainText"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/statusTransaksiBooking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/robotomedium"
+            android:text="booking"
+            android:textColor="@color/primary"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:id="@+id/cardProdukBooking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mitracontainerBooking">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="2"
+            app:cardBackgroundColor="@color/backgroundAd"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageProdukBooking"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bn" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingStart="10dp">
+
+                    <TextView
+                        android:id="@+id/namaProdukBooking"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/robotobold"
+                        android:maxEms="12"
+                        android:maxLines="1"
+                        android:text="Name"
+                        android:textColor="@color/mainText"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/hargaProdukBooking"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/robotomedium"
+                        android:text="Price"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/jumlahProdukBooking"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:fontFamily="@font/robotoregular"
+                            android:gravity="end|center"
+                            android:text="14"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/subHargaProdukBooking"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:fontFamily="@font/robotomedium"
+                            android:gravity="end|center"
+                            android:text="2000"
+                            android:textColor="@color/primary"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/footerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="2dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardProdukBooking">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/garis" />
+        <TextView
+            android:id="@+id/tampilkanLebihBanyakBooking"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingVertical="5dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/robotoregular"
+            android:gravity="center"
+            android:text="Tampilkan lebih banyak produk"
+            android:textColor="@color/mainText"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/garis" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lastFooterContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/footerContainer">
+
+        <TextView
+            android:id="@+id/jumlahSemuaProdukBooking"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:paddingVertical="5dp"
+            android:layout_weight="1"
+            android:paddingStart="16dp"
+            android:fontFamily="@font/robotoregular"
+            android:gravity="start"
+            android:text="6 produk"
+            android:textColor="@color/mainText"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/totalPesananTextBooking"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:paddingVertical="5dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/robotoregular"
+            android:gravity="end"
+            android:text="Total Pesanan :"
+            android:textColor="@color/mainText"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/totalPesananHasilBooking"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:paddingVertical="5dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/robotoregular"
+            android:layout_marginEnd="8dp"
+            android:gravity="end"
+            android:text="20000"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lastButtonBooking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="20dp"
+        android:gravity="end"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lastFooterContainer">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDetailBooking"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@drawable/btn_bg"
+            android:fontFamily="@font/robotomedium"
+            android:layout_marginEnd="8dp"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:text="Detail"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnBayarTerverifikasi"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@drawable/btn_bg"
+            android:fontFamily="@font/robotomedium"
+            android:layout_marginEnd="8dp"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:text="Bayar"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/garis"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lastButtonBooking" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

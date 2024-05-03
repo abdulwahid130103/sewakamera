@@ -29,7 +29,7 @@ class ProdukTerbaruAdapter (private val produkList: ArrayList<Produk>, context: 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val helper = DataHelper()
+        val helper = DataHelper(ctx)
         val product: Produk = produkList[position]
         holder.productBrandName_singleProduct.text = product.id_category
         holder.productIdSingle.text = product.id.toString()

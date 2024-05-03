@@ -67,31 +67,32 @@
             android:textSize="40dp" />
 
         <TextView
-            android:id="@+id/productBrandName_singleProduct"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/metropolis_light"
-            android:textColor="@color/textAd"
-            android:maxLines="1"
-            android:text="Brand Name"
-            android:textSize="13sp" />
-
-        <TextView
             android:id="@+id/productName_singleProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/metropolis_regular"
+            android:fontFamily="@font/robotobold"
             android:textColor="@color/mainText"
             android:maxLines="1"
             android:text="Product Name"
             android:textSize="15sp" />
 
         <TextView
+            android:id="@+id/productBrandName_singleProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/robotomedium"
+            android:textColor="@color/textAd"
+            android:maxLines="1"
+            android:text="Brand Name"
+            android:textSize="13sp" />
+
+
+        <TextView
             android:id="@+id/productPrice_singleProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:fontFamily="@font/metropolis_light"
+            android:fontFamily="@font/robotoregular"
             android:maxLines="1"
             android:text="Product Price"
             android:textColor="@color/primary"

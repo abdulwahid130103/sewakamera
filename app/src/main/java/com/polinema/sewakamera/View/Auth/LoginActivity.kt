@@ -35,7 +35,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         loadingDialog = LoadingDialog(this)
         Session = SessionSewa(this)
-        Session.removeData()
         checkLogin()
         b.btnLogin.setOnClickListener(this)
         b.btnRegister.setOnClickListener(this)
@@ -55,10 +54,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun checkLogin(){
-        if (Session.isLogin()!!){
+        if (Session.getLogin()){
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 
@@ -77,15 +75,17 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     val pesan = jsonObject.optString("message")
 
 
-                    if (is_valid.toBoolean() == true) {
+                    if (is_valid.toBoolean()) {
                         val data = jsonObject.getJSONObject("data")
                         val id = data.getInt("id")
                         val name = data.getString("name")
+                        val image = data.getString("image")
                         Toast.makeText(this, id.toString(), Toast.LENGTH_SHORT).show()
-                        Session.setLoggin(true)
+                        Session.setLogin(true)
                         Session.setUsername(name.toString())
-                        Session.setIdUser(id.toString())
-                        
+                        Session.setUserId(id.toString())
+                        Session.setImage(image.toString())
+
                         val intent = Intent(this, HomeActivity::class.java)
                         startActivity(intent)
                         finish()

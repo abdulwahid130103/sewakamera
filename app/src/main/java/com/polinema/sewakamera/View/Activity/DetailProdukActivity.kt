@@ -1,6 +1,7 @@
 package com.polinema.sewakamera.View.Activity
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,6 +22,7 @@ import com.polinema.sewakamera.Helper.SessionSewa
 import com.polinema.sewakamera.Model.Connection
 import com.polinema.sewakamera.Model.Produk
 import com.polinema.sewakamera.R
+import com.polinema.sewakamera.View.Auth.LoginActivity
 import com.polinema.sewakamera.databinding.ActivityDetailProdukBinding
 import org.json.JSONArray
 import org.json.JSONException
@@ -47,6 +49,7 @@ class DetailProdukActivity : AppCompatActivity() {
     lateinit var pPid: String
     lateinit var pImage: String
 
+
     lateinit var cardNumber: String
     private lateinit var Session: SessionSewa
 
@@ -61,20 +64,10 @@ class DetailProdukActivity : AppCompatActivity() {
         newProduct = arrayListOf()
         Session = SessionSewa(this)
 
-        helper = DataHelper()
+        helper = DataHelper(this)
 
         getDetailProduk()
-//        setProductData()
-//        setRecData()
-//
-//        RecomRecView_ProductDetailsPage.layoutManager = LinearLayoutManager(
-//            this,
-//            LinearLayoutManager.HORIZONTAL, false
-//        )
-//        RecomRecView_ProductDetailsPage.setHasFixedSize(true)
-//        newProductAdapter = ProductAdapter(newProduct, this)
-//        RecomRecView_ProductDetailsPage.adapter = newProductAdapter
-
+        Session = SessionSewa(this)
         b.backIvProfileFrag.setOnClickListener {
             onBackPressed()
         }
@@ -94,9 +87,18 @@ class DetailProdukActivity : AppCompatActivity() {
 
                 pPrice *= bottomSheetView.findViewById<EditText>(R.id.quantityEtBottom).text.toString()
                     .toInt()
-                Toast.makeText(this,pPrice.toString(),Toast.LENGTH_SHORT).show()
-                insertKeranjang()
-                bottomSheetDialod.dismiss()
+
+                if(Session.getLogin()){
+                    insertKeranjang()
+                    bottomSheetDialod.dismiss()
+                }else{
+                    bottomSheetDialod.dismiss()
+                    helper.toast_custom_alert(this, "notifikasi","Anda harus login untuk memasukkan produk ke keranjang")
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+
             }
 
             bottomSheetView.findViewById<LinearLayout>(R.id.minusLayout).setOnClickListener {
@@ -139,7 +141,7 @@ class DetailProdukActivity : AppCompatActivity() {
                 val message = jsonObject.getString("message")
 
                 if(success.toBoolean() == true){
-                    Toast.makeText(this,message.toString(),Toast.LENGTH_SHORT).show()
+                    helper.toast_custom_alert(this, "success",message)
                 }else{
                     Toast.makeText(this,"gagal insert keranjang",Toast.LENGTH_SHORT).show()
                 }
@@ -152,7 +154,7 @@ class DetailProdukActivity : AppCompatActivity() {
             override fun getParams(): MutableMap<String, String> {
                 val hm = HashMap<String,String>()
                 hm.put("product_id",productIndex.toString())
-                hm.put("user_id",Session.getIdUser().toString())
+                hm.put("user_id",Session.getUserId().toString())
                 hm.put("qty",qua.toString())
                 hm.put("price",pPrice.toString())
                 return hm
@@ -185,7 +187,7 @@ class DetailProdukActivity : AppCompatActivity() {
                         pPrice = jsonObject.getInt("harga")
                         pPid =  jsonObject.getString("id").toString()
                         pImage = jsonObject.getString("gambar_url")
-                        Toast.makeText(this,jsonObject.getString("nama_produk").toString(),Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(this,jsonObject.getString("nama_produk").toString(),Toast.LENGTH_SHORT).show()
                     }
                 } catch (e: JSONException) {
                     Toast.makeText(this, getString(R.string.error_message_data), Toast.LENGTH_SHORT).show()
