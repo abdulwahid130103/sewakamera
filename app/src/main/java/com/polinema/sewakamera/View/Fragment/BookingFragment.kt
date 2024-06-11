@@ -1,7 +1,9 @@
 package com.polinema.sewakamera.View.Fragment
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +33,7 @@ class BookingFragment : Fragment() {
 
     private lateinit var bookingDataAdapter: BookingAdapter
     private lateinit var Session: SessionSewa
+    private var data_cek= "kosong"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,6 +47,8 @@ class BookingFragment : Fragment() {
 
         getBookingData()
 
+
+
         b.bookingRecycleView.layoutManager = LinearLayoutManager(context)
         bookingDataAdapter = BookingAdapter(activity as Context, bookingData )
         b.bookingRecycleView.adapter = bookingDataAdapter
@@ -52,6 +57,15 @@ class BookingFragment : Fragment() {
         return v
     }
 
+    private fun cekData(){
+        if (data_cek == "kosong"){
+            b.dataKosongBooking.visibility = View.VISIBLE
+            b.bookingRecycleView.visibility = View.GONE
+        }else{
+            b.dataKosongBooking.visibility = View.GONE
+            b.bookingRecycleView.visibility = View.VISIBLE
+        }
+    }
     private fun getBookingData() {
         val url = Connection()
         var url_fix = "${url.get_booking_transaksi}/${Session.getUserId()}"
@@ -62,6 +76,10 @@ class BookingFragment : Fragment() {
                 try {
                     val jsonArray = JSONArray(response)
                     bookingData.clear()
+                    if(jsonArray.length() > 0){
+                        data_cek = "ada"
+                    }
+                    cekData()
                     for (i in 0 until jsonArray.length()) {
                         val jsonObject = jsonArray.getJSONObject(i)
                         val bok = Booking(

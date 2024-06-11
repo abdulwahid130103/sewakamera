@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/MainScrollView_homeFrag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/abu"
+    tools:context=".View.Activity.ProdukListActivity">
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/MainLayout_homeFrag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- NestedScrollingChild goes here (NestedScrollView, RecyclerView, etc.). -->
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/searchbar_scrolling_view_behavior">
+                <!-- Screen content goes here. -->
+            </androidx.core.widget.NestedScrollView>
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/back_button"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="35dp"
+                        android:layout_marginStart="30dp"
+                        android:layout_alignParentStart="true"
+                        android:src="@drawable/ic_back_black"/>
+                    <com.google.android.material.search.SearchBar
+                        android:id="@+id/search_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:layout_toEndOf="@+id/back_button"
+                        android:backgroundTint="@color/white"
+                        android:hint="Search ..." />
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/filterContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/searchView2">
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/filterUrutan"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        style="@style/CustomSpinner"
+                        android:layout_height="40dp" />
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/filterKategori"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="20dp"
+                        style="@style/CustomSpinner"
+                        android:layout_height="40dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ListProdukContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filterContainer">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/produkRecycleList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/single_product" />
+
+                    <TextView
+                        android:id="@+id/dataKosongProdukList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Data Kosong !"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/robotobold"
+
+                        android:textColor="@color/mainText" />
+                </LinearLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <com.google.android.material.search.SearchView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/searchViewPL"
+                android:hint="Search"
+                app:layout_anchor="@id/search_bar">
+            </com.google.android.material.search.SearchView>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

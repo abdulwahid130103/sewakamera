@@ -278,6 +278,17 @@
             android:textSize="12sp"
             android:textColor="@color/white"
             android:text="Bayar"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnNilaiTransaksi"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@drawable/btn_bg"
+            android:fontFamily="@font/robotomedium"
+            android:layout_marginEnd="8dp"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:text="Nilai"/>
     </LinearLayout>
 
     <View

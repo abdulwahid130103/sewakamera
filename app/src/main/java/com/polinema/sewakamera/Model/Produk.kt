@@ -9,5 +9,6 @@ data class Produk(
     val type: String = "",
     val harga:Int = 0,
     val stok:Int = 0,
-    val deskripsi:String = ""
+    val deskripsi:String = "",
+    var rating: Float = 0f
 )

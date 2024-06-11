@@ -1,10 +1,8 @@
 package com.polinema.sewakamera.View.Activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.MenuItem
-import androidx.fragment.app.FragmentTransaction
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.polinema.sewakamera.R
 import com.polinema.sewakamera.View.Fragment.HomeFragment
@@ -41,6 +39,7 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         fragmentTransaction.replace(R.id.nav_fragment, fragment, fragment.javaClass.simpleName)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
+
     }
 
 

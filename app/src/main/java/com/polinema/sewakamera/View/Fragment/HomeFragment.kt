@@ -3,22 +3,15 @@ package com.polinema.sewakamera.View.Fragment
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.airbnb.lottie.LottieAnimationView
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.polinema.sewakamera.Adapter.CoverProdukAdapter
 import com.polinema.sewakamera.Adapter.ProdukTerbaruAdapter
 import com.polinema.sewakamera.Adapter.ProdukTerlarisAdapter
@@ -26,18 +19,16 @@ import com.polinema.sewakamera.Model.Connection
 import com.polinema.sewakamera.Model.Produk
 import com.polinema.sewakamera.R
 import com.polinema.sewakamera.View.Activity.HomeActivity
+import com.polinema.sewakamera.View.Activity.ProdukListActivity
 import com.polinema.sewakamera.databinding.FragmentHomeBinding
 import org.json.JSONArray
 import org.json.JSONException
-import org.json.JSONObject
-import java.io.IOException
 
 class HomeFragment : Fragment() {
 
     private lateinit var b : FragmentHomeBinding
     private lateinit var thisParent : HomeActivity
     private lateinit var v : View
-
     private lateinit var coverProduk:ArrayList<Produk>
     private lateinit var terbaruProduk:ArrayList<Produk>
     private lateinit var terlarisProduk:ArrayList<Produk>
@@ -85,7 +76,30 @@ class HomeFragment : Fragment() {
 
         showLayout()
 
+        b.searchView
+            .getEditText()
+            .setOnEditorActionListener { v, actionId, event ->
+                val searchText = b.searchView.getText().toString()
+                b.searchBar.setText(b.searchView.getText())
+                b.searchView.hide()
 
+                val intent = Intent(thisParent, ProdukListActivity::class.java)
+                intent.putExtra("data_search", searchText)
+                startActivity(intent)
+                false
+            }
+
+        b.lihatSemuaProdukTerlama.setOnClickListener{
+            val intent = Intent(thisParent, ProdukListActivity::class.java)
+            intent.putExtra("data_filter", "terlama")
+            startActivity(intent)
+        }
+
+        b.LihatSemuaProdukTerbaru.setOnClickListener{
+            val intent = Intent(thisParent, ProdukListActivity::class.java)
+            intent.putExtra("data_filter", "terbaru")
+            startActivity(intent)
+        }
 
         return v
     }
@@ -167,7 +181,8 @@ class HomeFragment : Fragment() {
                             type = jsonObject.getString("type"),
                             harga = jsonObject.getInt("harga"),
                             stok = jsonObject.getInt("stok"),
-                            deskripsi = jsonObject.getString("deskripsi")
+                            deskripsi = jsonObject.getString("deskripsi"),
+                            rating = jsonObject.getString("rating").toFloat(),
                         )
                         terbaruProduk.add(produk)
                     }
@@ -207,7 +222,8 @@ class HomeFragment : Fragment() {
                             type = jsonObject.getString("type"),
                             harga = jsonObject.getInt("harga"),
                             stok = jsonObject.getInt("stok"),
-                            deskripsi = jsonObject.getString("deskripsi")
+                            deskripsi = jsonObject.getString("deskripsi"),
+                            rating = jsonObject.getString("rating").toFloat(),
                         )
                         terlarisProduk.add(produk)
                     }

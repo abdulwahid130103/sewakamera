@@ -27,6 +27,24 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".View.Activity.UpdateProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.Activity.UlasanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.Activity.DetailPenilaianActivity"
+            android:exported="false" />
+        <activity
+            android:name=".View.Activity.RatingActivity"
+            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".View.Activity.DetailPesananActivity"-->
+<!--            android:exported="false" />-->
+        <activity
+            android:name=".View.Activity.ProdukListActivity"
+            android:exported="false" />
+        <activity
             android:name=".View.Activity.AfterPaymentActivity"
             android:exported="false" />
         <activity

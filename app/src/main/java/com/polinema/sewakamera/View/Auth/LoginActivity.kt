@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.polinema.sewakamera.Helper.DataHelper
 import com.polinema.sewakamera.Helper.LoadingDialog
 import com.polinema.sewakamera.Helper.SessionSewa
 import com.polinema.sewakamera.Model.Connection
@@ -23,6 +24,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var loadingDialog: LoadingDialog
     private lateinit var Session: SessionSewa
+    lateinit var helper : DataHelper
 
     private lateinit var b : ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +33,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val view = b.root
         setContentView(view)
 
+        helper = DataHelper(this)
+
 
 
         loadingDialog = LoadingDialog(this)
@@ -38,16 +42,32 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         checkLogin()
         b.btnLogin.setOnClickListener(this)
         b.btnRegister.setOnClickListener(this)
+        b.btnBacktoHome.setOnClickListener(this)
 
+    }
+
+    private fun cekDataKosong(){
+        if(
+            b.inputEmail.text.toString() == "" ||
+            b.inputPassword.text.toString() == ""
+        ){
+            helper.toast_custom_alert(this,"error","Data tidak boleh kosong !")
+        }else{
+            authentication()
+        }
     }
 
     override fun onClick(p0: View?) {
         when(p0?.id){
             R.id.btnLogin -> {
-                authentication()
+                cekDataKosong()
             }
             R.id.btnRegister -> {
                 intent = Intent(this, RegisterActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.btnBacktoHome -> {
+                intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
             }
         }
@@ -74,13 +94,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     val is_valid = jsonObject.optString("success")
                     val pesan = jsonObject.optString("message")
 
-
                     if (is_valid.toBoolean()) {
                         val data = jsonObject.getJSONObject("data")
                         val id = data.getInt("id")
                         val name = data.getString("name")
                         val image = data.getString("image")
-                        Toast.makeText(this, id.toString(), Toast.LENGTH_SHORT).show()
+                        helper.toast_custom_alert(this,"success",pesan.toString())
                         Session.setLogin(true)
                         Session.setUsername(name.toString())
                         Session.setUserId(id.toString())
@@ -90,7 +109,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         startActivity(intent)
                         finish()
                     } else {
-                        Toast.makeText(this,  pesan.toString(), Toast.LENGTH_SHORT).show()
+                        helper.toast_custom_alert(this,"error",pesan.toString())
                     }
                 } catch (e: JSONException) {
                     Toast.makeText(this, "Email tidak valid", Toast.LENGTH_SHORT).show()

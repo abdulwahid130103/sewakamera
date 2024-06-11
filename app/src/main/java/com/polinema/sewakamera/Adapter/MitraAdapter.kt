@@ -1,6 +1,7 @@
 package com.polinema.sewakamera.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,8 @@ import com.bumptech.glide.Glide
 import com.polinema.sewakamera.Model.Category
 import com.polinema.sewakamera.Model.Mitra
 import com.polinema.sewakamera.R
+import com.polinema.sewakamera.View.Activity.DetailMitraActivity
+import com.polinema.sewakamera.View.Activity.ProdukListActivity
 
 class MitraAdapter(var ctx: Context, private val mitraList: ArrayList<Mitra>) :
     RecyclerView.Adapter<MitraAdapter.ViewHolder>(){
@@ -29,10 +32,17 @@ class MitraAdapter(var ctx: Context, private val mitraList: ArrayList<Mitra>) :
         val item: Mitra = mitraList[position]
 
         holder.nameMitra.text = item.name
+        holder.idMitraView.text = item.id.toString()
 
         Glide.with(ctx)
             .load(item.image)
             .into(holder.mitraImageView)
+
+        holder.itemView.setOnClickListener{
+            val intent = Intent(ctx, DetailMitraActivity::class.java)
+            intent.putExtra("data_mitra", item.id.toString())
+            ctx.startActivity(intent)
+        }
 
     }
 
@@ -44,6 +54,7 @@ class MitraAdapter(var ctx: Context, private val mitraList: ArrayList<Mitra>) :
 
         val mitraImageView: ImageView = itemView.findViewById(R.id.mitraImageView)
         val nameMitra: TextView = itemView.findViewById(R.id.NamaMitraView)
+        val idMitraView: TextView = itemView.findViewById(R.id.idMitraView)
 
     }
 

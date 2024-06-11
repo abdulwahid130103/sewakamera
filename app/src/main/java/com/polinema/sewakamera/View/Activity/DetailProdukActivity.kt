@@ -16,7 +16,9 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.polinema.sewakamera.Adapter.CoverProdukAdapter
 import com.polinema.sewakamera.Adapter.ProdukTerbaruAdapter
+import com.polinema.sewakamera.Adapter.RekomendasiAdapter
 import com.polinema.sewakamera.Helper.DataHelper
 import com.polinema.sewakamera.Helper.SessionSewa
 import com.polinema.sewakamera.Model.Connection
@@ -41,6 +43,10 @@ class DetailProdukActivity : AppCompatActivity() {
     lateinit var newProductAdapter: ProdukTerbaruAdapter
     lateinit var newProduct: ArrayList<Produk>
 
+    private lateinit var rekomendasiData:ArrayList<Produk>
+
+    private lateinit var rekomendasiDataAdapter: RekomendasiAdapter
+
     lateinit var helper : DataHelper
 
     lateinit var pName: String
@@ -62,6 +68,7 @@ class DetailProdukActivity : AppCompatActivity() {
         ProductFrom = intent.getStringExtra("ProductFrom").toString()
 
         newProduct = arrayListOf()
+        rekomendasiData = arrayListOf()
         Session = SessionSewa(this)
 
         helper = DataHelper(this)
@@ -72,6 +79,10 @@ class DetailProdukActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        b.rekomendasiRecycleViewDetailProduk.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false)
+        b.rekomendasiRecycleViewDetailProduk.setHasFixedSize(true)
+        rekomendasiDataAdapter = RekomendasiAdapter(rekomendasiData,this )
+        b.rekomendasiRecycleViewDetailProduk.adapter = rekomendasiDataAdapter
         b.addToCartProductDetailsPage.setOnClickListener {
 
             val bottomSheetDialod = BottomSheetDialog(
@@ -120,15 +131,24 @@ class DetailProdukActivity : AppCompatActivity() {
             bottomSheetDialod.setContentView(bottomSheetView)
             bottomSheetDialod.show()
         }
+  
+        b.penilaianDetailProdukContainer.setOnClickListener{
+            val intent = Intent(this , DetailPenilaianActivity::class.java)
+            intent.putExtra("id_produk", productIndex)
+            startActivity(intent)
+        }
 
-    }
+        b.mitraProdukContainer.setOnClickListener{
+            val intent = Intent(this , DetailMitraActivity::class.java)
+            intent.putExtra("data_mitra", b.idMitraDetailProduk.text.toString())
+            startActivity(intent)
+        }
 
-    private fun addProductToBag() {
+        b.lihatSemuaDetailProduk.setOnClickListener{
+            val intent = Intent(this , ProdukListActivity::class.java)
+            startActivity(intent)
+        }
 
-//        cartViewModel = ViewModelProviders.of(this).get(CartViewModel::class.java)
-//
-//        cartViewModel.insert(ProductEntity(pName, qua, pPrice, pPid, pImage))
-//        toast("Add to Bag Successfully")
     }
 
     fun insertKeranjang(){
@@ -182,11 +202,15 @@ class DetailProdukActivity : AppCompatActivity() {
                         b.productPriceProductDetailsPage.text = helper.formatRupiah(jsonObject.getInt("harga")).toString() + "/hari"
                         b.productBrandProductDetailsPage.text = jsonObject.getString("id_category").toString()
                         b.productDesProductDetailsPage.text = jsonObject.getString("deskripsi").toString()
+                        b.namaMitraDetailProduk.text = jsonObject.getString("nama_mitra").toString()
+                        b.idMitraDetailProduk.text = jsonObject.getInt("id_mitra").toString()
+                        b.productRatingSingleProduct.rating = jsonObject.getString("rating").toFloat()
 
                         pName = jsonObject.getString("nama_produk").toString()
                         pPrice = jsonObject.getInt("harga")
                         pPid =  jsonObject.getString("id").toString()
                         pImage = jsonObject.getString("gambar_url")
+                        getRekomendasiProduk()
 //                        Toast.makeText(this,jsonObject.getString("nama_produk").toString(),Toast.LENGTH_SHORT).show()
                     }
                 } catch (e: JSONException) {
@@ -203,4 +227,46 @@ class DetailProdukActivity : AppCompatActivity() {
         val queue = Volley.newRequestQueue(this)
         queue.add(stringRequest)
     }
+
+    private fun getRekomendasiProduk(){
+        val url = Connection()
+
+        val stringRequest = object : StringRequest(
+            Method.GET, url.get_rekomendasi_produk,
+            Response.Listener { response ->
+                try {
+                    val jsonArray = JSONArray(response)
+                    rekomendasiData.clear()
+                    for (i in 0 until jsonArray.length()) {
+                        val jsonObject = jsonArray.getJSONObject(i)
+                        val produk = Produk(
+                            id = jsonObject.getInt("id"),
+                            id_mitra = jsonObject.getInt("id_mitra"),
+                            id_category = jsonObject.getString("id_category"),
+                            nama_produk = jsonObject.getString("nama_produk"),
+                            image = jsonObject.getString("gambar_url"),
+                            type = jsonObject.getString("type"),
+                            harga = jsonObject.getInt("harga"),
+                            stok = jsonObject.getInt("stok"),
+                            deskripsi = jsonObject.getString("deskripsi"),
+                            rating = jsonObject.getString("rating").toFloat(),
+                        )
+                        rekomendasiData.add(produk)
+                    }
+                    rekomendasiDataAdapter.notifyDataSetChanged()
+                } catch (e: JSONException) {
+                    Toast.makeText(this, getString(R.string.error_message_data), Toast.LENGTH_SHORT).show()
+                    e.printStackTrace()
+                }
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(
+                    this, getString(R.string.error_message_server), Toast.LENGTH_LONG
+                ).show()
+            }) {}
+
+        val queue = Volley.newRequestQueue(this)
+        queue.add(stringRequest)
+    }
+
 }

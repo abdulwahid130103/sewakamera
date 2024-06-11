@@ -44,6 +44,8 @@ class ProdukTerlarisAdapter (private val produkTerlarisList: ArrayList<Produk>, 
         holder.itemView.setOnClickListener {
             goDetailsPage(product.id)
         }
+
+        holder.productRating_singleProduct.rating = product.rating
     }
 
     override fun getItemCount(): Int {

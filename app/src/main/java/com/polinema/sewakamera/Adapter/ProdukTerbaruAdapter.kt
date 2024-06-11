@@ -45,6 +45,7 @@ class ProdukTerbaruAdapter (private val produkList: ArrayList<Produk>, context: 
         holder.itemView.setOnClickListener {
             goDetailsPage(product.id)
         }
+        holder.productRating_singleProduct.rating = product.rating
 
     }
 

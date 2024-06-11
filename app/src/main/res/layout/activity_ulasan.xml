@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/abu"
+    android:layout_height="match_parent"
+    tools:context=".View.Activity.UlasanActivity">
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/topBarDetailUlasan"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="@color/primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/backDetailUlasanContainer"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/backDetailUlasan"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_back"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="20dp" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/judulDetailUlasan"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/robotomedium"
+                android:text="Detail Ulasan"/>
+        </LinearLayout>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/produkRecycleDetailUlasan"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@+id/topBarDetailUlasan"
+        tools:listitem="@layout/list_item_detail_rating" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/dataKosongDetailUlasan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/robotobold"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:visibility="gone"
+        android:text="Data Kosong !"
+        android:textColor="@color/mainText"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="@+id/produkRecycleDetailUlasan" />
+</androidx.constraintlayout.widget.ConstraintLayout>

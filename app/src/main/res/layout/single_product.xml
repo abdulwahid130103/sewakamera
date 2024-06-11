@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/background"
+    android:background="@drawable/inset_shadow"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -11,14 +12,14 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="180dp"
-        android:layout_height="200dp"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        app:cardBackgroundColor="@color/backgroundAd"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
-        app:cardBackgroundColor="@color/backgroundAd"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/productImage_singleProduct"
@@ -30,13 +31,12 @@
     </androidx.cardview.widget.CardView>
 
 
-
     <LinearLayout
         android:id="@+id/linearLayout5"
-        android:layout_width="180dp"
-        android:layout_height="110dp"
-        android:background="@color/background"
+        android:layout_width="200dp"
+        android:layout_height="120dp"
         android:orientation="vertical"
+        android:paddingHorizontal="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
         >

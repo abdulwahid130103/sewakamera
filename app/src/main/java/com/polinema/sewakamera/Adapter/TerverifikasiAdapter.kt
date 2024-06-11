@@ -1,6 +1,7 @@
 package com.polinema.sewakamera.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.polinema.sewakamera.Helper.DataHelper
 import com.polinema.sewakamera.Model.Booking
 import com.polinema.sewakamera.Model.Terverifikasi
 import com.polinema.sewakamera.R
+import com.polinema.sewakamera.View.Activity.DetailHistoryTransaksiActivity
 
 class TerverifikasiAdapter(var ctx: Context, private val verifList: ArrayList<Terverifikasi>) :
     RecyclerView.Adapter<TerverifikasiAdapter.ViewHolder>() {
@@ -47,8 +49,9 @@ class TerverifikasiAdapter(var ctx: Context, private val verifList: ArrayList<Te
             .into(holder.imageProdukBooking)
 
         if(item.status == "terverifikasi"){
-            holder.btnDetailBooking.visibility = View.GONE
+            holder.btnDetailBooking.visibility = View.VISIBLE
             holder.btnBayarTerverifikasi.visibility = View.VISIBLE
+            holder.btnNilaiTransaksi.visibility = View.GONE
         }
         holder.namaProdukBooking.text = item.nama_produk
         holder.hargaProdukBooking.text = hp.formatRupiah(item.harga.toString().toInt())
@@ -58,6 +61,11 @@ class TerverifikasiAdapter(var ctx: Context, private val verifList: ArrayList<Te
         holder.totalPesananHasilBooking.text =
             hp.formatRupiah(item.total_all_produk.toString().toInt())
 
+        holder.btnDetailBooking.setOnClickListener{
+            val intent = Intent(ctx , DetailHistoryTransaksiActivity::class.java)
+            intent.putExtra("transaksi_id", item.id.toString())
+            ctx.startActivity(intent)
+        }
         holder.btnBayarTerverifikasi.setOnClickListener {
 //            Log.d("posisi",item.id.toString())
             payClickListener?.onPayClick(
@@ -91,6 +99,6 @@ class TerverifikasiAdapter(var ctx: Context, private val verifList: ArrayList<Te
             itemView.findViewById(R.id.totalPesananHasilBooking)
         val btnDetailBooking: Button = itemView.findViewById(R.id.btnDetailBooking)
         val btnBayarTerverifikasi: Button = itemView.findViewById(R.id.btnBayarTerverifikasi)
-
+        val btnNilaiTransaksi: Button = itemView.findViewById(R.id.btnNilaiTransaksi)
     }
 }

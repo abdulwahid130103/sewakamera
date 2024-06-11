@@ -22,4 +22,12 @@
         <item name="android:background">@android:color/background_dark</item>
     </style>
 
+    <style name="CustomSpinner" parent="Widget.AppCompat.Spinner.Underlined">
+        <item name="android:padding">8dp</item>
+        <item name="android:textColor">#333333</item>
+        <item name="android:background">@drawable/spinner_background</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>

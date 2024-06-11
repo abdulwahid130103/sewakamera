@@ -97,7 +97,7 @@
                                 android:layout_weight="1" />
 
                             <TextView
-                                android:id="@+id/product_GroupViewAll"
+                                android:id="@+id/LihatSemuaProdukTerbaru"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/robotomedium"
@@ -153,7 +153,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/robotobold"
-                                android:text="Produk Terlaris"
+                                android:text="Produk Terlama"
                                 android:textColor="@color/mainText"
                                 android:textSize="25sp" />
 
@@ -163,7 +163,7 @@
                                 android:layout_weight="1" />
 
                             <TextView
-                                android:id="@+id/saleProduct_ViewAll"
+                                android:id="@+id/lihatSemuaProdukTerlama"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/robotomedium"
@@ -201,6 +201,7 @@
             <com.google.android.material.search.SearchView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/searchView"
                 android:hint="Search"
                 app:layout_anchor="@id/search_bar">
             </com.google.android.material.search.SearchView>

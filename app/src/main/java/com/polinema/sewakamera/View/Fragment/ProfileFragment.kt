@@ -11,6 +11,8 @@ import com.polinema.sewakamera.Helper.SessionSewa
 import com.polinema.sewakamera.R
 import com.polinema.sewakamera.View.Activity.HomeActivity
 import com.polinema.sewakamera.View.Activity.PesananActivity
+import com.polinema.sewakamera.View.Activity.UlasanActivity
+import com.polinema.sewakamera.View.Activity.UpdateProfileActivity
 import com.polinema.sewakamera.View.Auth.LoginActivity
 import com.polinema.sewakamera.View.Auth.RegisterActivity
 import com.polinema.sewakamera.databinding.FragmentMitraBinding
@@ -37,10 +39,18 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         b.btnLoginProfile.setOnClickListener(this)
         b.btnRegisterProfile.setOnClickListener(this)
         b.btnLogoutContainer.setOnClickListener(this)
+        b.ulasanProfileContainer.setOnClickListener(this)
+        if(Session.getLogin()){
+            b.updateProfileContainer.setOnClickListener(this)
+        }
 
 
 
         return v
+    }
+
+    fun updateProfileSession(){
+
     }
 
     fun cekLogin(){
@@ -86,6 +96,14 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             R.id.btn_logout_container -> {
                 Session.logoutUser()
                 val intent = Intent(thisParent, HomeActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.ulasanProfileContainer -> {
+                val intent = Intent(thisParent, UlasanActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.updateProfileContainer -> {
+                val intent = Intent(thisParent, UpdateProfileActivity::class.java)
                 startActivity(intent)
             }
         }

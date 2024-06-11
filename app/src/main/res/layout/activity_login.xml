@@ -99,6 +99,15 @@
                 />
         </LinearLayout>
 
+        <Button
+            android:id="@+id/btnBacktoHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_bg"
+            android:text="Kembali Ke Home"
+            android:layout_marginTop="40dp"
+            android:elevation="10dp"
+            />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

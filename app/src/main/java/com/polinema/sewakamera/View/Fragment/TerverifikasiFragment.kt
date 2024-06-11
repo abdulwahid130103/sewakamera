@@ -18,11 +18,15 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.midtrans.sdk.uikit.api.model.BankTransferRequest
 import com.midtrans.sdk.uikit.api.model.CreditCard
 import com.midtrans.sdk.uikit.api.model.CustomColorTheme
 import com.midtrans.sdk.uikit.api.model.CustomerDetails
 import com.midtrans.sdk.uikit.api.model.Expiry
+import com.midtrans.sdk.uikit.api.model.GopayPaymentCallback
 import com.midtrans.sdk.uikit.api.model.ItemDetails
+import com.midtrans.sdk.uikit.api.model.PaymentCallback
+import com.midtrans.sdk.uikit.api.model.PaymentType
 import com.midtrans.sdk.uikit.api.model.SnapTransactionDetail
 import com.midtrans.sdk.uikit.api.model.TransactionResult
 import com.midtrans.sdk.uikit.external.UiKitApi
@@ -59,6 +63,9 @@ class TerverifikasiFragment : Fragment() {
 
     var idTransaksiLastPayment = 0;
 
+    private var data_cek= "kosong"
+    private var id_order= "kosong"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -71,11 +78,13 @@ class TerverifikasiFragment : Fragment() {
 
         getVerifData()
 
+        val url = Connection()
+
         context?.let {
             UiKitApi.Builder()
                 .withMerchantClientKey("SB-Mid-client-GOMEsW6TYo8zRTJJ")
                 .withContext(it)
-                .withMerchantUrl("http://192.168.0.132/sewakameranew/sewakameranew/public/api/")
+                .withMerchantUrl(url.get_api)
                 .enableLog(true)
                 .withColorTheme(CustomColorTheme("#FFE51255", "#B61548", "#FFE51255"))
                 .build()
@@ -98,6 +107,16 @@ class TerverifikasiFragment : Fragment() {
         return v
     }
 
+    private fun cekData(){
+        if (data_cek == "kosong"){
+            b.dataKosongBooking.visibility = View.VISIBLE
+            b.verifRecycleView.visibility = View.GONE
+        }else{
+            b.dataKosongBooking.visibility = View.GONE
+            b.verifRecycleView.visibility = View.VISIBLE
+        }
+    }
+
     private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result?.resultCode == AppCompatActivity.RESULT_OK) {
             result.data?.let {
@@ -118,6 +137,11 @@ class TerverifikasiFragment : Fragment() {
                 try {
                     val jsonArray = JSONArray(response)
                     verifData.clear()
+
+                    if(jsonArray.length() > 0){
+                        data_cek = "ada"
+                    }
+                    cekData()
                     for (i in 0 until jsonArray.length()) {
                         val jsonObject = jsonArray.getJSONObject(i)
 
@@ -153,20 +177,28 @@ class TerverifikasiFragment : Fragment() {
     }
 
     private fun checkPaymentStatus(orderId: String) {
-        val url = "https://api.sandbox.midtrans.com/v2/$orderId/status"
+        val url = "https://api.sandbox.midtrans.com/v2/$orderId/status/b2b"
         val requestQueue = Volley.newRequestQueue(thisParent)
 
         val stringRequest = object : StringRequest(Method.GET, url,
             Response.Listener<String> { response ->
                 val data = JSONObject(response)
-                Log.d("PaymentStatus", "Response: ${response.toString()}")
-                handlePaymentResponse(
-                    data.getString("transaction_id"),
-                    data.getString("transaction_status"),
-                    data.getString("transaction_time"),
-                    data.getString("payment_type"),
-                    data.getString("expiry_time"),
-                )
+                val transactions = data.getJSONArray("transactions")
+                for (i in 0 until transactions.length()) {
+                    val jsonObject = transactions.getJSONObject(i)
+                    val jsonNumber = jsonObject.getJSONArray("va_numbers")
+                    for (i in 0 until transactions.length()) {
+                        val jsonObjectNumber = jsonNumber.getJSONObject(i)
+                        handlePaymentResponse(
+                            jsonObject.getString("transaction_id"),
+                            jsonObject.getString("transaction_status"),
+                            jsonObject.getString("transaction_time"),
+                            jsonObject.getString("payment_type"),
+                            jsonObject.getString("expiry_time"),
+                            jsonObjectNumber.getString("va_number"),
+                        )
+                    }
+                }
             },
             Response.ErrorListener { error ->
                 Log.e("PaymentStatus", "Error: ${error.message}")
@@ -187,6 +219,7 @@ class TerverifikasiFragment : Fragment() {
         transaction_time : String,
         payment_type : String,
         expiry_time : String,
+        va_number : String,
     ) {
         var st_bayar = "bayar"
         val url = Connection()
@@ -194,7 +227,7 @@ class TerverifikasiFragment : Fragment() {
         if(transaction_status == "settlement"){
             st_bayar = "lunas"
         }
-        val url_fix = "${url.get_update_transaksi_status}?id_transaksi=${idTransaksiLastPayment}&transaction_id=$transaction_id&transaction_status=$transaction_status&transaction_time=$transaction_time&payment_type=$payment_type&expiry_time=$expiry_time&status=$st_bayar"
+        val url_fix = "${url.get_update_transaksi_status}?id_transaksi=${idTransaksiLastPayment}&transaction_id=$transaction_id&transaction_status=$transaction_status&transaction_time=$transaction_time&payment_type=$payment_type&expiry_time=$expiry_time&status=$st_bayar&va_number=$va_number"
         val request = object : StringRequest(
             Method.POST,url_fix, Response.Listener { response ->
                 val jsonObject = JSONObject(response)
@@ -257,7 +290,7 @@ class TerverifikasiFragment : Fragment() {
                             itemDetails,
                             CreditCard(false, null, null, null, null, null, null, null, null, null),
                             "customerIdentifier"+System.currentTimeMillis().toString(),
-                            null, null, null,
+                            null, null,null,
                             Expiry(
                                 SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z", Locale.getDefault()).format(
                                     Date()

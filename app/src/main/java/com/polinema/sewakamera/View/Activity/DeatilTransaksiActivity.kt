@@ -84,8 +84,9 @@ class DeatilTransaksiActivity : AppCompatActivity(), View.OnClickListener {
     fun insertTransaksiBooking(
         idUser: String,
         status: String,
-        tgljadi: String,
+        tglpinjam: String,
         tglBooking: String,
+        tglTenggat: String,
         idMitra: String,
         totalHarga: String,
         datas: List<ProductData>) {
@@ -120,8 +121,9 @@ class DeatilTransaksiActivity : AppCompatActivity(), View.OnClickListener {
                 return HashMap<String, String>().apply {
                     put("id_user", idUser)
                     put("status", status)
-                    put("tgl_jadi", tgljadi)
+                    put("tgl_pinjam", tglpinjam)
                     put("tgl_booking", tglBooking)
+                    put("tgl_tenggat", tglTenggat)
                     put("id_mitra", idMitra)
                     put("total_harga", totalHarga)
                     put("data", JSONArray(datas.map {
@@ -180,12 +182,18 @@ class DeatilTransaksiActivity : AppCompatActivity(), View.OnClickListener {
             val currentDateTime = LocalDateTime.now()
             val formattedCurrentDateTime = currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
 
+            val jumlahHari = b.jumlahHariBooking.text.toString().toIntOrNull() ?: 0
+            val tanggalTenggat = currentDateTime.plusDays(jumlahHari.toLong() + 1).withHour(7).withMinute(0).withSecond(0)
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+            val formattedTenggat = tanggalTenggat.format(formatter)
+
 
             this.insertTransaksiBooking(
                 idUser = Session.getUserId().toString(),
                 status = "booking",
-                tgljadi = combinedDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
+                tglpinjam = combinedDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 tglBooking = formattedCurrentDateTime,
+                tglTenggat = formattedTenggat,
                 idMitra = idMitra.toString(),  // Ensure idMitra is set correctly elsewhere in your code
                 totalHarga = totalHarga.toString(),
                 datas = productsData

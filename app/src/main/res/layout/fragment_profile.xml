@@ -21,6 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/updateProfileContainer"
             android:layout_width="0dp"
             android:layout_height="70dp"
             android:layout_weight="1">
@@ -152,6 +153,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/ulasanProfileContainer"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             app:cardBackgroundColor="@color/background"
@@ -206,7 +208,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/shippingAddressCard_ProfilePage"
+            android:id="@+id/gantiPasswordProfileContainer"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             app:cardBackgroundColor="@color/background"
@@ -229,11 +231,11 @@
                     android:orientation="horizontal">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/logoOrderanSaya2"
+                        android:id="@+id/logogantiPasswordProfile"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
-                        android:src="@drawable/notifikasi_black_profile"
                         android:layout_marginRight="10dp"
+                        android:src="@drawable/ic_password_logo"
                         android:layout_gravity="center"
                         app:civ_border_color="@color/black"
                         app:tint="@color/mainText"
@@ -243,10 +245,11 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/robotomedium"
-                        android:text="Peraturan"
+                        android:text="Ganti Password"
                         android:layout_gravity="center"
                         android:textColor="@color/mainText"
                         android:textSize="16sp" />
+
 
                 </LinearLayout>
 
@@ -258,6 +261,60 @@
                     app:tint="@color/primary" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:id="@+id/shippingAddressCard_ProfilePage"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="60dp"-->
+<!--            app:cardBackgroundColor="@color/background"-->
+<!--            app:cardElevation="0dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="start"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                        android:id="@+id/logoOrderanSaya2"-->
+<!--                        android:layout_width="35dp"-->
+<!--                        android:layout_height="35dp"-->
+<!--                        android:src="@drawable/notifikasi_black_profile"-->
+<!--                        android:layout_marginRight="10dp"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        app:civ_border_color="@color/black"-->
+<!--                        app:tint="@color/mainText"-->
+<!--                        />-->
+<!--                    <TextView-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:fontFamily="@font/robotomedium"-->
+<!--                        android:text="Peraturan"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:textColor="@color/mainText"-->
+<!--                        android:textSize="16sp" />-->
+
+<!--                </LinearLayout>-->
+
+<!--                <ImageView-->
+<!--                    android:layout_width="22dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:src="@drawable/ic_baseline_keyboard_arrow_right_24"-->
+<!--                    app:tint="@color/primary" />-->
+<!--            </LinearLayout>-->
+<!--        </androidx.cardview.widget.CardView>-->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/paymentMethod_ProfilePage"

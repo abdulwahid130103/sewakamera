@@ -1,6 +1,7 @@
 package com.polinema.sewakamera.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,8 @@ import com.bumptech.glide.Glide
 import com.polinema.sewakamera.Helper.DataHelper
 import com.polinema.sewakamera.Model.Booking
 import com.polinema.sewakamera.R
+import com.polinema.sewakamera.View.Activity.DetailHistoryTransaksiActivity
+import com.polinema.sewakamera.View.Activity.DetailProdukActivity
 
 class BookingAdapter (var ctx: Context, private val bookingList: ArrayList<Booking>) :
     RecyclerView.Adapter<BookingAdapter.ViewHolder>() {
@@ -41,6 +44,7 @@ class BookingAdapter (var ctx: Context, private val bookingList: ArrayList<Booki
         if(item.status == "booking"){
             holder.btnDetailBooking.visibility = View.VISIBLE
             holder.btnBayarTerverifikasi.visibility = View.GONE
+            holder.btnNilaiTransaksi.visibility = View.GONE
         }
         holder.namaProdukBooking.text = item.nama_produk
         holder.hargaProdukBooking.text = hp.formatRupiah(item.harga.toString().toInt())
@@ -50,7 +54,9 @@ class BookingAdapter (var ctx: Context, private val bookingList: ArrayList<Booki
         holder.totalPesananHasilBooking.text = hp.formatRupiah(item.total_all_produk.toString().toInt())
 
         holder.btnDetailBooking.setOnClickListener{
-
+            val intent = Intent(ctx , DetailHistoryTransaksiActivity::class.java)
+            intent.putExtra("transaksi_id", item.id.toString())
+            ctx.startActivity(intent)
         }
 
     }
@@ -74,6 +80,7 @@ class BookingAdapter (var ctx: Context, private val bookingList: ArrayList<Booki
         val totalPesananHasilBooking: TextView = itemView.findViewById(R.id.totalPesananHasilBooking)
         val btnDetailBooking: Button = itemView.findViewById(R.id.btnDetailBooking)
         val btnBayarTerverifikasi: Button = itemView.findViewById(R.id.btnBayarTerverifikasi)
+        val btnNilaiTransaksi: Button = itemView.findViewById(R.id.btnNilaiTransaksi)
 
     }
 }
