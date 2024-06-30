@@ -12,6 +12,7 @@ import com.polinema.sewakamera.R
 import com.polinema.sewakamera.View.Activity.HomeActivity
 import com.polinema.sewakamera.View.Activity.PesananActivity
 import com.polinema.sewakamera.View.Activity.UlasanActivity
+import com.polinema.sewakamera.View.Activity.UpdatePasswordActivity
 import com.polinema.sewakamera.View.Activity.UpdateProfileActivity
 import com.polinema.sewakamera.View.Auth.LoginActivity
 import com.polinema.sewakamera.View.Auth.RegisterActivity
@@ -40,6 +41,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         b.btnRegisterProfile.setOnClickListener(this)
         b.btnLogoutContainer.setOnClickListener(this)
         b.ulasanProfileContainer.setOnClickListener(this)
+        b.gantiPasswordProfileContainer.setOnClickListener(this)
         if(Session.getLogin()){
             b.updateProfileContainer.setOnClickListener(this)
         }
@@ -96,6 +98,10 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             R.id.btn_logout_container -> {
                 Session.logoutUser()
                 val intent = Intent(thisParent, HomeActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.gantiPasswordProfileContainer -> {
+                val intent = Intent(thisParent, UpdatePasswordActivity::class.java)
                 startActivity(intent)
             }
             R.id.ulasanProfileContainer -> {

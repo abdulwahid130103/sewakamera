@@ -186,8 +186,10 @@ class DeatilTransaksiActivity : AppCompatActivity(), View.OnClickListener {
             val tanggalTenggat = currentDateTime.plusDays(jumlahHari.toLong() + 1).withHour(7).withMinute(0).withSecond(0)
             val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
             val formattedTenggat = tanggalTenggat.format(formatter)
-
-
+//            Toast.makeText(this, "masuk", Toast.LENGTH_SHORT).show()
+//
+//
+//
             this.insertTransaksiBooking(
                 idUser = Session.getUserId().toString(),
                 status = "booking",
@@ -210,13 +212,19 @@ class DeatilTransaksiActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.jamSewaBooking -> {
                 data.showTimePicker(this, TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
-                    val formattedTime = String.format("%02d:%02d", hourOfDay, minute)
+                    val formattedTime = String.format("%02d.%02d", hourOfDay, minute)
                     b.jamSewaBooking.setText(formattedTime)
                 })
             }
             R.id.tanggalSewaBooking->{
                 data.showDatePicker(this, DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-                    val formattedDate = "${year}-${month+1}-${dayOfMonth}"
+                    val selectedCalendar = Calendar.getInstance()
+                    selectedCalendar.set(year, month, dayOfMonth)
+
+                    // Menggunakan SimpleDateFormat untuk format tanggal
+                    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                    val formattedDate = dateFormat.format(selectedCalendar.time)
+
                     b.tanggalSewaBooking.setText(formattedDate)
                 })
             }
