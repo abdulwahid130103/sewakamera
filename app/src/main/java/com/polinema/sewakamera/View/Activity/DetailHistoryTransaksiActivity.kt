@@ -171,6 +171,10 @@ class DetailHistoryTransaksiActivity : AppCompatActivity() {
             b.btnCreateInvoice.visibility = View.GONE
         }else if (status == "selesai"){
             b.viaNumberHistoryContainer.visibility = View.GONE
+            b.btnCreateInvoice.visibility = View.GONE
+        }else if(status == "tolak"){
+            b.viaNumberHistoryContainer.visibility = View.GONE
+            b.btnCreateInvoice.visibility = View.GONE
         }
     }
 }

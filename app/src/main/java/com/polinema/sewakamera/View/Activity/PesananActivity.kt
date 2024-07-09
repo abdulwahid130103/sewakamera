@@ -17,6 +17,7 @@ import com.polinema.sewakamera.Helper.SessionSewa
 import com.polinema.sewakamera.View.Auth.LoginActivity
 import com.polinema.sewakamera.View.Fragment.ExpiredFragment
 import com.polinema.sewakamera.View.Fragment.LunasFragment
+import com.polinema.sewakamera.View.Fragment.TolakFragment
 import com.polinema.sewakamera.databinding.ActivityPesananBinding
 
 class PesananActivity : AppCompatActivity() {
@@ -49,6 +50,7 @@ class PesananActivity : AppCompatActivity() {
             fragmentAdapter.addFragment(DipinjamFragment(),"Disewa")
             fragmentAdapter.addFragment(SelesaiFragment(),"Selesai")
             fragmentAdapter.addFragment(ExpiredFragment(),"Kadaluarsa")
+            fragmentAdapter.addFragment(TolakFragment(),"Ditolak")
             viewPager.adapter = fragmentAdapter
             tb.setupWithViewPager(viewPager)
 

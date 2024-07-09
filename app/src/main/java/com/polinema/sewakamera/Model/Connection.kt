@@ -2,7 +2,7 @@ package com.polinema.sewakamera.Model
 
 class Connection {
 
-    var url_root = "http://192.168.0.132/sewakameranew/sewakameranew/public/"
+    var url_root = "http://192.168.199.161/sewakameranew/sewakameranew/public/"
     var url_login = "${url_root}api/login"
     var url_cover_produk = "${url_root}api/get_produk"
     var url_cover_produk_terbaru = "${url_root}api/get_produk_terbaru"
@@ -26,6 +26,7 @@ class Connection {
     var get_cek_expired = "${url_root}api/get_cek_expired"
     var get_lunas_transaksi = "${url_root}api/get_lunas_transaksi"
     var get_expired_transaksi = "${url_root}api/get_expired_transaksi"
+    var get_tolak_transaksi = "${url_root}api/get_tolak_transaksi"
     var get_detail_history = "${url_root}api/get_detail_history"
     var get_detail_ulasan = "${url_root}api/get_detail_ulasan"
     var get_produk_rating = "${url_root}api/get_produk_rating"
