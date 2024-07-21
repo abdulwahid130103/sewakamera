@@ -10,7 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.volley.Request
 import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.polinema.sewakamera.Adapter.BookingAdapter
@@ -122,24 +124,35 @@ class DibayarFragment : Fragment() {
     }
 
 
-    private fun updateExpiredData(transaksi_id: Int,status: String,status_bayar : String){
+    private fun updateExpiredData(transaksi_id: Int, status: String, status_bayar: String) {
         val url = Connection()
-        val url_fix = "${url.get_update_status_expired}?id_transaksi=${transaksi_id}&status=$status&status_bayar=$status_bayar"
-        val request = object : StringRequest(
-            Method.POST,url_fix, Response.Listener { response ->
-                val jsonObject = JSONObject(response)
-                val success = jsonObject.getBoolean("success")
-                val message = jsonObject.getString("message")
-                Toast.makeText(thisParent,message.toString(),Toast.LENGTH_LONG).show()
+        Log.d("status_B", "$transaksi_id , $status, $status_bayar")
+        val url_fix = url.get_update_status_expired
 
+        // Create a JSON object with the required parameters
+        val jsonBody = JSONObject()
+        jsonBody.put("id_transaksi", transaksi_id.toString())
+        jsonBody.put("status", status)
+        jsonBody.put("status_bayar", status_bayar)
+
+        // Create a JsonObjectRequest
+        val request = JsonObjectRequest(
+            Request.Method.POST, url_fix, jsonBody,
+            Response.Listener { response ->
+                val success = response.getBoolean("success")
+                val message = response.getString("message")
+                Toast.makeText(thisParent, message, Toast.LENGTH_LONG).show()
             },
             Response.ErrorListener { error ->
-                Toast.makeText(thisParent,"Tidak dapat terhubung ke server",
-                    Toast.LENGTH_LONG).show()
-            }){}
+                Toast.makeText(thisParent, "Tidak dapat terhubung ke server", Toast.LENGTH_LONG).show()
+            }
+        )
+
+        // Add the request to the RequestQueue
         val queue = Volley.newRequestQueue(thisParent)
         queue.add(request)
     }
+
 
     private fun getExpiredData(transaksi_id: Int,orderId: String) {
         val url = "https://api.sandbox.midtrans.com/v2/$orderId/status/b2b"
@@ -182,10 +195,14 @@ class DibayarFragment : Fragment() {
             Response.Listener { response ->
                 try {
                     val jsonArray = JSONArray(response)
-                    for (i in 0 until jsonArray.length()) {
-                        val jsonObject = jsonArray.getJSONObject(i)
-                        getExpiredData(jsonObject.getInt("id"),jsonObject.getString("order_id"))
+                    if(jsonArray.length() != 0){
+                        for (i in 0 until jsonArray.length()) {
+                            val jsonObject = jsonArray.getJSONObject(i)
+//                            Log.d("data bro:",jsonObject.toString());
+                            getExpiredData(jsonObject.getInt("id"),jsonObject.getString("order_id"))
+                        }
                     }
+
                 } catch (e: JSONException) {
                     Toast.makeText(thisParent, getString(R.string.error_message_data), Toast.LENGTH_SHORT).show()
                     e.printStackTrace()

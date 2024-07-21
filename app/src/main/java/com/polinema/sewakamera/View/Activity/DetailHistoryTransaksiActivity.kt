@@ -141,39 +141,94 @@ class DetailHistoryTransaksiActivity : AppCompatActivity() {
             b.metodePembayaranHistoryContainer.visibility = View.GONE
             b.nopesananhistoryhasilContainer.visibility = View.GONE
             b.tanggalditerimahistoryContainer.visibility = View.GONE
+            b.tanggalpinjambookingcontainer.visibility = View.GONE
+            b.tanggaltenggatbookingcontainer.visibility = View.GONE
             b.tanggalterverifikasibookingcontainer.visibility = View.GONE
             b.tanggalpembayaranhistoryContainer.visibility = View.GONE
             b.tanggalPengembalianHistoryContainer.visibility = View.GONE
             b.tanggalExpiredDetailHistoryContainer.visibility = View.GONE
             b.btnCreateInvoice.visibility = View.GONE
         }else if (status == "terverifikasi"){
-            b.viaNumberHistoryContainer.visibility = View.GONE
             b.metodePembayaranHistoryContainer.visibility = View.GONE
             b.nopesananhistoryhasilContainer.visibility = View.GONE
+            b.tanggalditerimahistoryContainer.visibility = View.GONE
+            b.tanggalpinjambookingcontainer.visibility = View.GONE
+            b.tanggaltenggatbookingcontainer.visibility = View.GONE
+            b.tanggalterverifikasibookingcontainer.visibility = View.GONE
             b.tanggalpembayaranhistoryContainer.visibility = View.GONE
             b.tanggalPengembalianHistoryContainer.visibility = View.GONE
             b.tanggalExpiredDetailHistoryContainer.visibility = View.GONE
             b.btnCreateInvoice.visibility = View.GONE
         }else if (status == "bayar"){
+            b.metodePembayaranHistoryContainer.visibility = View.GONE
+            b.nopesananhistoryhasilContainer.visibility = View.GONE
+            b.tanggalditerimahistoryContainer.visibility = View.GONE
+            b.tanggalpinjambookingcontainer.visibility = View.GONE
+            b.tanggaltenggatbookingcontainer.visibility = View.GONE
+            b.tanggalterverifikasibookingcontainer.visibility = View.GONE
+            b.tanggalpembayaranhistoryContainer.visibility = View.GONE
             b.tanggalPengembalianHistoryContainer.visibility = View.GONE
+            b.tanggalExpiredDetailHistoryContainer.visibility = View.GONE
             b.btnCreateInvoice.visibility = View.GONE
         }else if (status == "lunas"){
             b.viaNumberHistoryContainer.visibility = View.GONE
+            b.metodePembayaranHistoryContainer.visibility = View.GONE
+            b.nopesananhistoryhasilContainer.visibility = View.GONE
+            b.tanggalditerimahistoryContainer.visibility = View.GONE
+            b.tanggalpinjambookingcontainer.visibility = View.GONE
+            b.tanggaltenggatbookingcontainer.visibility = View.GONE
+            b.tanggalterverifikasibookingcontainer.visibility = View.GONE
+            b.tanggalpembayaranhistoryContainer.visibility = View.GONE
             b.tanggalPengembalianHistoryContainer.visibility = View.GONE
+            b.tanggalExpiredDetailHistoryContainer.visibility = View.GONE
             b.btnCreateInvoice.visibility = View.GONE
         }else if (status == "dipinjam"){
             b.viaNumberHistoryContainer.visibility = View.GONE
+            b.metodePembayaranHistoryContainer.visibility = View.GONE
+            b.nopesananhistoryhasilContainer.visibility = View.GONE
+            b.tanggalditerimahistoryContainer.visibility = View.GONE
+            b.tanggalpinjambookingcontainer.visibility = View.VISIBLE
+            b.tanggaltenggatbookingcontainer.visibility = View.GONE
+            b.tanggalterverifikasibookingcontainer.visibility = View.GONE
+            b.tanggalpembayaranhistoryContainer.visibility = View.GONE
             b.tanggalPengembalianHistoryContainer.visibility = View.GONE
+            b.tanggalExpiredDetailHistoryContainer.visibility = View.GONE
             b.btnCreateInvoice.visibility = View.GONE
         }else if (status == "kadaluarsa"){
             b.viaNumberHistoryContainer.visibility = View.GONE
+            b.metodePembayaranHistoryContainer.visibility = View.GONE
+            b.nopesananhistoryhasilContainer.visibility = View.GONE
+            b.tanggalditerimahistoryContainer.visibility = View.GONE
+            b.tanggalpinjambookingcontainer.visibility = View.GONE
+            b.tanggaltenggatbookingcontainer.visibility = View.GONE
+            b.tanggalterverifikasibookingcontainer.visibility = View.GONE
+            b.tanggalpembayaranhistoryContainer.visibility = View.GONE
             b.tanggalPengembalianHistoryContainer.visibility = View.GONE
+            b.tanggalExpiredDetailHistoryContainer.visibility = View.GONE
             b.btnCreateInvoice.visibility = View.GONE
         }else if (status == "selesai"){
             b.viaNumberHistoryContainer.visibility = View.GONE
+            b.metodePembayaranHistoryContainer.visibility = View.GONE
+            b.nopesananhistoryhasilContainer.visibility = View.GONE
+            b.tanggalditerimahistoryContainer.visibility = View.GONE
+            b.tanggalpinjambookingcontainer.visibility = View.VISIBLE
+            b.tanggaltenggatbookingcontainer.visibility = View.GONE
+            b.tanggalterverifikasibookingcontainer.visibility = View.GONE
+            b.tanggalpembayaranhistoryContainer.visibility = View.GONE
+            b.tanggalPengembalianHistoryContainer.visibility = View.VISIBLE
+            b.tanggalExpiredDetailHistoryContainer.visibility = View.GONE
             b.btnCreateInvoice.visibility = View.GONE
         }else if(status == "tolak"){
             b.viaNumberHistoryContainer.visibility = View.GONE
+            b.metodePembayaranHistoryContainer.visibility = View.GONE
+            b.nopesananhistoryhasilContainer.visibility = View.GONE
+            b.tanggalditerimahistoryContainer.visibility = View.GONE
+            b.tanggalpinjambookingcontainer.visibility = View.GONE
+            b.tanggaltenggatbookingcontainer.visibility = View.GONE
+            b.tanggalterverifikasibookingcontainer.visibility = View.GONE
+            b.tanggalpembayaranhistoryContainer.visibility = View.GONE
+            b.tanggalPengembalianHistoryContainer.visibility = View.GONE
+            b.tanggalExpiredDetailHistoryContainer.visibility = View.GONE
             b.btnCreateInvoice.visibility = View.GONE
         }
     }
